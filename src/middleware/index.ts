@@ -1,4 +1,3 @@
-import errorHandler from "./errorHandler";
-import global from "./global";
-import { validation } from "./validation";
-export { global, validation, errorHandler };
+export { errorHandler } from "./errorHandler";
+export { globalMiddlewares } from "./global";
+export { validation } from "./validation";

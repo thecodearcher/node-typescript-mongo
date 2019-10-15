@@ -6,5 +6,5 @@
     "ignore": [
         "src/**/*.spec.ts"
     ],
-    "exec": "tsc && node ./dist"
+    "exec": "rm -rf ./dist && tsc && node ./dist"
 }

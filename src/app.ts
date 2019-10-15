@@ -1,8 +1,8 @@
+import { globalMiddlewares, errorHandler } from "./middleware";
 import express from "express";
+import mongoose from "mongoose";
 import { userRouter } from "./api/User";
-import { BASE_PATH } from "./config";
-import { errorHandler, global } from "./middleware";
-import { DB } from "./shared/database";
+import { BASE_PATH, MONGODB_URI } from "./config";
 import { logger } from "./utils/logger";
 
 class App {
@@ -21,22 +21,26 @@ class App {
     }
 
     private mountRoutes() {
-        console.log(this.basePath);
         this.express.use(`${this.basePath}/user`, userRouter);
     }
 
     private registerMiddlewares() {
-        global(this.express);
+        globalMiddlewares(this.express);
     }
 
     private initializeDb() {
-        DB.authenticate()
-            .then(() => {
-                logger.info("Database connection has been established successfully.");
-            })
-            .catch((err) => {
-                throw (err);
-            });
+        // stop ensureIndex deprecation warning
+        mongoose.set("useCreateIndex", true);
+
+        // Connect to our Database and handle any bad connections
+        mongoose.connect(MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        }).then(() => {
+            logger.info("Database connection established");
+        }).catch((err) => {
+            logger.error(`Error connecting to the database: ${err.message}`);
+        });
     }
 
     // Error handlers

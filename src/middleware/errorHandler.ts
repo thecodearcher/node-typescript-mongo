@@ -2,7 +2,7 @@ import { ENVIRONMENT } from "../config";
 
 import { logger } from "../utils/logger";
 
-export default (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
     if (!err.isOperational) {
         if (ENVIRONMENT !== "development") {
             logger.error(

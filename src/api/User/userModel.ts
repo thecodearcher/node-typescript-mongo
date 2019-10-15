@@ -1,27 +1,12 @@
-import Sequelize, { Model } from "sequelize";
-import { DB } from "../../shared/database";
+import { createSchema, Type, typedModel } from "ts-mongoose";
 
-export class UserModel extends Model { }
-UserModel.init(
-    {
-        email: {
-            type: Sequelize.STRING,
-        },
-        firstName: {
-            type: Sequelize.STRING,
-            validate: {
-                min: 2,
-            },
-        },
-        lastName: {
-            type: Sequelize.STRING,
-            validate: {
-                min: 2,
-            },
-        },
+export const UserSchema = createSchema({
+    name: Type.string(),
+    email: Type.string(),
+}, {
+    timestamps: {
+        createdAt: true,
+    },
+});
 
-    }, {
-    sequelize: DB,
-    modelName: "Users",
-},
-);
+export const User = typedModel("User", UserSchema);

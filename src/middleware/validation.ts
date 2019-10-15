@@ -1,5 +1,6 @@
 import Joi from "@hapi/joi";
 import _ from "lodash";
+import { Request, Response, NextFunction } from "express";
 
 /**
  *  Validates incoming input in the body of a request.
@@ -23,7 +24,7 @@ export const validation = (schema: Joi.ObjectSchema, options?: Joi.ValidationOpt
     };
 
     // return the validation middleware
-    return (req, res, next) => {
+    return (req: Request, res: Response, next: NextFunction) => {
         const method = req.method.toLowerCase();
 
         if (_.includes(_supportedMethods, method) && schema) {

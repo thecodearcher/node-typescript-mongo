@@ -9,5 +9,5 @@ app.listen(app.get("port"), (err) => {
         return logger.error(err);
     }
 
-    return logger.info(`server is listening on ${port}`);
+    return logger.info(`Server is listening on ${port}`);
 });

@@ -4,7 +4,7 @@
 
 ## Features
 * Uses typescript
-* Basic mysql/sequlize model setup
+* Basic mongodb/mongoose model setup
 * Global error handling
 * Request input validation using [Joi](https://github.com/hapijs/joi)
 _ _ _ _
