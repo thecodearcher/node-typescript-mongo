@@ -10,7 +10,7 @@ const User = new UserController();
 
 router.use(validation(UserValidationSchema));
 
-router.get("/", call(User.getUsers, (req, _res, _next) => [req.params.id]));
+router.get("/", call(User.getUsers, (req, _res, _next) => []));
 
 router.post("/", call(User.addUser, (req, _res, _next) => [req.body]));
 

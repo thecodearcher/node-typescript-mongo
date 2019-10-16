@@ -21,7 +21,7 @@ class App {
     }
 
     private mountRoutes() {
-        this.express.use(`${this.basePath}/user`, userRouter);
+        this.express.use(`${this.basePath}/users`, userRouter);
     }
 
     private registerMiddlewares() {
